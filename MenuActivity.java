@@ -1,45 +1,56 @@
 package com.example.myapplication9;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
+
 public class MenuActivity extends AppCompatActivity {
-    LinearLayout container;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.button);
 
-        Button btn_register=findViewById(R.id.btn_register);
-        Button btn_back=findViewById(R.id.btn_back);
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(R.layout.activity_register);
-            }
-        });
+        BarChart barChart=findViewById(R.id.barchart);
 
 
-        /*container=findViewById(R.id.container);
+        ArrayList entries=new ArrayList();
+        entries.add(new Entry(4f,1));
+        entries.add(new Entry(8f,4));
+        entries.add(new Entry(9f,5));
+        entries.add(new Entry(18f, 9));
 
-        Button button=findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LayoutInflater inflater=(LayoutInflater)
-                        getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                inflater.inflate(R.layout.sub1,container,true);
-                CheckBox checkBox=container.findViewById(R.id.checkbox);
-                checkBox.setText("로딩되었어요");
-            }
-        });*/
+
+        ArrayList day= new ArrayList();
+
+        BarDataSet bardataset=new BarDataSet(entries, "NOthing");
+        barChart.animateY(1000);
+        BarData data=new BarData(day, bardataset);
+        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        barChart.setData(data);
+
+
     }
+
+
+
+
 }
